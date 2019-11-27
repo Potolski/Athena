@@ -22,3 +22,20 @@ Phase 1 has the following objectives:
 
 
 [fn:1]https://en.wikipedia.org/wiki/Athena
+* Running the code
+** Prerequisites
+ 1. Node js 12.x ([[https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/][How to install node on ubuntu]] [remember to select 12.x when downloading the package!!])
+ 2. [[https://facebook.github.io/react-native/docs/getting-started][Expo]]
+ 3. [[https://yarnpkg.com/en/docs/install#debian-stable][Yarn]] 
+** Installation
+ In a new terminal window execute the following commands:
+ #+BEGIN_SRC bash
+ git clone https://github.com/Potolski/Athena.git
+ cd Athena/src
+ yarn install
+ #+END_SRC
+** Running the code
+In a terminal window navigate to the folder where you installed Athenas and execute:
+ #+BEGIN_SRC bash
+ yarn start
+ #+END_SRC
