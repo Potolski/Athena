@@ -26,7 +26,8 @@ Phase 1 has the following objectives:
 ** Prerequisites
  1. Node js 12.x ([[https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/][How to install node on ubuntu]] [remember to select 12.x when downloading the package!!])
  2. [[https://facebook.github.io/react-native/docs/getting-started][Expo]]
- 3. [[https://yarnpkg.com/en/docs/install#debian-stable][Yarn]] 
+ 3. [[https://yarnpkg.com/en/docs/install#debian-stable][Yarn]]
+ 4. [[https://docs.expo.io/versions/latest/sdk/audio/][Expo-av]] 
 ** Installation
  In a new terminal window execute the following commands:
  #+BEGIN_SRC bash
