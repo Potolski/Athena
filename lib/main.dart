@@ -14,9 +14,30 @@ class ExampleApp extends StatefulWidget {
 }
 
 class _ExampleAppState extends State<ExampleApp> {
-  AudioPlayer advancedPlayer = new AudioPlayer();
-  AudioCache audioCache = new AudioCache();
+  Duration _duration = new Duration();
+  Duration _position = new Duration();
+  AudioPlayer advancedPlayer;
+  AudioCache audioCache;  
+
+  @override
+  void initState(){
+    super.initState();
+    initPlayer();
+  }
   
+  void initPlayer(){
+    advancedPlayer = new AudioPlayer();
+    audioCache = new AudioCache(fixedPlayer: advancedPlayer);
+
+    advancedPlayer.durationHandler = (d) => setState(() {
+      _duration = d;
+    });
+
+    advancedPlayer.positionHandler = (p) => setState(() {
+    _position = p;
+    });
+  }
+
   String localFilePath;
 
   Widget _tab(List<Widget> children) {
@@ -38,12 +59,32 @@ class _ExampleAppState extends State<ExampleApp> {
         child: RaisedButton(child: Text(txt), onPressed: onPressed));
   }
 
+
+  Widget slider() {
+    return Slider(
+        value: _position.inSeconds.toDouble(),
+        min: 0.0,
+        max: _duration.inSeconds.toDouble(),
+        onChanged: (double value) {
+          setState(() {
+            seekToSecond(value.toInt());
+            value = value;
+          });});
+  }
+
+  void seekToSecond(int second){
+    Duration newDuration = Duration(seconds: second);
+
+    advancedPlayer.seek(newDuration);
+  }
+  
   Widget localAsset() {
     return _tab([
       Text('Play Local Asset:'),
       _btn('Play', () => audioCache.play('audio.mp3')),
       _btn('Pause',() => advancedPlayer.pause()),
-      _btn('Stop', () => advancedPlayer.stop())
+      _btn('Stop', () => advancedPlayer.stop()),
+      slider()
     ]);
   }
 
