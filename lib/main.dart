@@ -14,8 +14,9 @@ class ExampleApp extends StatefulWidget {
 }
 
 class _ExampleAppState extends State<ExampleApp> {
-  AudioCache audioCache = new AudioCache();
   AudioPlayer advancedPlayer = new AudioPlayer();
+  AudioCache audioCache = new AudioCache();
+  
   String localFilePath;
 
   Widget _tab(List<Widget> children) {
@@ -40,7 +41,9 @@ class _ExampleAppState extends State<ExampleApp> {
   Widget localAsset() {
     return _tab([
       Text('Play Local Asset:'),
-      _btn('Play', () => audioCache.play('audio.mp3'))
+      _btn('Play', () => audioCache.play('audio.mp3')),
+      _btn('Pause',() => advancedPlayer.pause()),
+      _btn('Stop', () => advancedPlayer.stop())
     ]);
   }
 
