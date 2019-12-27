@@ -22,3 +22,8 @@ Phase 1 has the following objectives:
 
 
 [fn:1]https://en.wikipedia.org/wiki/Athena
+
+* References
+
+[[https://file-examples.com/index.php/sample-audio-files/sample-mp3-download/][Audio file used for tests]]
+[[https://medium.com/@pongpiraupra/a-comprehensive-guide-to-playing-local-mp3-files-with-seek-functionality-in-flutter-7730a453bb1a][Tutorial for audio player]]
