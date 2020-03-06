@@ -1,6 +1,8 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'library.dart';
+
 
 typedef void OnError(Exception exception);
 
@@ -78,12 +80,13 @@ class _ExampleAppState extends State<ExampleApp> {
     advancedPlayer.seek(newDuration);
   }
   
-  Widget localAsset() {
+  Widget localAsset(BuildContext ctx) {
     return _tab([
       Text('Play Local Asset:'),
       _btn('Play', () => audioCache.play('audio.mp3')),
       _btn('Pause',() => advancedPlayer.pause()),
       _btn('Stop', () => advancedPlayer.stop()),
+      _btn('addFolder', () => Library().addFolders(ctx)),
       slider()
     ]);
   }
@@ -102,7 +105,7 @@ class _ExampleAppState extends State<ExampleApp> {
           title: Text('Athena'),
         ),
         body: TabBarView(
-          children: [localAsset()],
+          children: [localAsset(context)],
         ),
       ),
     );
