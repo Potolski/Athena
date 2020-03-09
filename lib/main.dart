@@ -19,14 +19,14 @@ class _ExampleAppState extends State<ExampleApp> {
   Duration _duration = new Duration();
   Duration _position = new Duration();
   AudioPlayer advancedPlayer;
-  AudioCache audioCache;  
+  AudioCache audioCache;
 
   @override
   void initState(){
     super.initState();
     initPlayer();
   }
-  
+
   void initPlayer(){
     advancedPlayer = new AudioPlayer();
     audioCache = new AudioCache(fixedPlayer: advancedPlayer);
@@ -42,25 +42,52 @@ class _ExampleAppState extends State<ExampleApp> {
 
   String localFilePath;
 
-  Widget _tab(List<Widget> children) {
+  Widget localAsset(BuildContext ctx){
     return Center(
       child: Container(
         padding: EdgeInsets.all(16.0),
         child: Column(
-          children: children
-              .map((w) => Container(child: w, padding: EdgeInsets.all(6.0)))
-              .toList(),
-        ),
-      ),
-    );
-  }
+         mainAxisSize: MainAxisSize.max,
+         mainAxisAlignment: MainAxisAlignment.center,
+          children:[
+            _btn('Select File', () => Library().addFolders(ctx),Icons.folder),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              _btn('Play', () => audioCache.play('audio.mp3'),Icons.play_arrow),
+              _btn('Pause',() => advancedPlayer.pause(),Icons.pause),
+              _btn('Stop', () => advancedPlayer.stop(),Icons.stop)]
+            ),
+            slider()
+          ]
+          )
+        )
+      );
+    }
 
-  Widget _btn(String txt, VoidCallback onPressed) {
+    Widget _row(List<Widget> children) {
+    return Center(
+      child: Container(
+        padding: EdgeInsets.all(16.0),
+         child: Row(
+            children: children
+            .map((w) => Container(child: w, padding: EdgeInsets.all(6.0)))
+            .toList(),
+          )
+        )
+      );
+    }
+
+  Widget _btn(String txt, VoidCallback onPressed,IconData x) {
     return ButtonTheme(
-        minWidth: 48.0,
-        child: RaisedButton(child: Text(txt), onPressed: onPressed));
+        minWidth: 60.0,
+        child: IconButton(
+          icon: Icon(x),
+          color: Colors.blue,
+          onPressed: onPressed)
+      );
   }
-
 
   Widget slider() {
     return Slider(
@@ -79,17 +106,7 @@ class _ExampleAppState extends State<ExampleApp> {
 
     advancedPlayer.seek(newDuration);
   }
-  
-  Widget localAsset(BuildContext ctx) {
-    return _tab([
-      Text('Play Local Asset:'),
-      _btn('Play', () => audioCache.play('audio.mp3')),
-      _btn('Pause',() => advancedPlayer.pause()),
-      _btn('Stop', () => advancedPlayer.stop()),
-      _btn('addFolder', () => Library().addFolders(ctx)),
-      slider()
-    ]);
-  }
+
 
   @override
   Widget build(BuildContext context) {

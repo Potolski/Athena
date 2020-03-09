@@ -22,14 +22,15 @@ class Library {
     print(directory.path);
     final rdir = directory.path
         .replaceFirst("Android/data/com.example.example/files", "");
-    Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.storage]);
+        Map<PermissionGroup, PermissionStatus> permissions =
+        await PermissionHandler().requestPermissions([PermissionGroup.storage]);
     Navigator.of(context).push<FolderPickerPage>(
         MaterialPageRoute(builder: (BuildContext context) {
       return FolderPickerPage(
           rootDirectory: Directory(rdir),
           /// a [Directory] object
           action: (BuildContext context, Directory folder) async {
-            print("Picked folder $folder");
+            print("Picked foldeasddadsdadr $folder");
           });
     }));
   }
