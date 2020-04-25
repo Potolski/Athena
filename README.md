@@ -1,19 +1,19 @@
-#+Title:  Athena
+# Athena
 
 "Athena or Athene, often given the epithet Pallas, is an ancient Greek
 goddess associated with wisdom, handicraft, and warfare who was later
 syncretized with the Roman goddess Minerva.
 
-Since the Renaissance, Athena has become an international symbol of wisdom, the
-arts, and classical learning."[fn:1]
+"Since the Renaissance, Athena has become an international symbol of wisdom, the
+arts, and classical learning."[1]
 
-* What
+## What
 
 This app has the purpose to improve the way book's knowledge is
 widespread, increasing the possibilities to receive and retain the information contained in
 them.
 
-* How
+## How
 
 Phase 1 has the following objectives:
  - Have an audio player with options to change the speed the audio is being played at;
@@ -21,11 +21,12 @@ Phase 1 has the following objectives:
  - A simple note keeper;
 
 
-[fn:1]https://en.wikipedia.org/wiki/Athena
+## References
 
-* References
-- [[https://pub.dev][Flutter packages]]
+[1]: https://en.wikipedia.org/wiki/Athena
 
-- [[https://file-examples.com/index.php/sample-audio-files/sample-mp3-download/][Audio file used for tests]]
+- [Flutter packages](https://pub.dev)
 
-- [[https://medium.com/@pongpiraupra/a-comprehensive-guide-to-playing-local-mp3-files-with-seek-functionality-in-flutter-7730a453bb1a][Tutorial for audio player]]
+- [Audio file used for tests](https://file-examples.com/index.php/sample-audio-files/sample-mp3-download/)
+
+- [Tutorial for audio player](https://medium.com/@pongpiraupra/a-comprehensive-guide-to-playing-local-mp3-files-with-seek-functionality-in-flutter-7730a453bb1a)
