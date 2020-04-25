@@ -63,6 +63,14 @@ class _AudioTab extends State<AudioTab> {
                             onPressed: () => advancedPlayer.stop(),
                             iconData: Icons.stop)
                       ]),
+                      Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                          AudioBtn(
+                          onPressed: () =>  advancedPlayer.setPlaybackRate(playbackRate: 2.0),
+                          iconData: Icons.exposure_plus_2)
+                    ]),
                   slider()
                 ])));
   }
