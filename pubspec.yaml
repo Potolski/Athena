@@ -16,6 +16,7 @@ dependencies:
   audioplayers: ^0.15.1
   folder_picker: ^0.3.0
   permission_handler: '^4.4.0'
+  mime: ^0.9.6+3
 
 dev_dependencies:
   flutter_test:
