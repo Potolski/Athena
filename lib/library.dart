@@ -4,12 +4,13 @@ import 'package:folder_picker/folder_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:mime/mime.dart'
+import 'package:mime/mime.dart';
+import 'package:path/path.dart';
 
 class Library {
   static final Library _instance = Library._internal();
   List<Directory> folders;
-
+  Map<String, List<File>> files;
   factory Library() {
     return _instance;
   }
@@ -18,12 +19,11 @@ class Library {
     this.folders = [];
   }
 
-  _addDirectory(Directory folder) {
-
-    folder.list(recursive: true)
-      .where((x) => x is File && lookupMimeType(x.path).startsWith("audio"))
-
-
+  _addDirectory(Directory folder) async {
+    var content = await folder.list()
+      .where((f) => f is File && lookupMimeType(f.path).startsWith("audio"))
+      .toList();
+    this.files[folder.path] = content;
   }
 
   addFolders(BuildContext context) async {
@@ -39,7 +39,7 @@ class Library {
             rootDirectory: Directory(rdir),
             action: (BuildContext context, Directory folder) async {
               this.folders.add(folder);
-              print(folder.toString());
+              this._addDirectory(folder);
               Navigator.of(context).pop();
           });
     }));
