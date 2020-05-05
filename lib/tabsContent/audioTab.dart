@@ -27,13 +27,13 @@ class _AudioTab extends State<AudioTab> {
     advancedPlayer = new AudioPlayer();
     audioCache = new AudioCache(fixedPlayer: advancedPlayer);
 
-    advancedPlayer.durationHandler = (d) => setState(() {
+    advancedPlayer.onDurationChanged.listen((d) => setState(() {
           _duration = d;
-        });
+        }));
 
-    advancedPlayer.positionHandler = (p) => setState(() {
+    advancedPlayer.onAudioPositionChanged.listen((p) => setState(() {
           _position = p;
-        });
+        }));
   }
 
   String localFilePath;
