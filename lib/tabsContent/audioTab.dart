@@ -46,9 +46,15 @@ class _AudioTab extends State<AudioTab> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AudioBtn(
-                      onPressed: () => Library().addFolders(ctx),
-                      iconData: Icons.folder),
+                  slider(),
+                   Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                          AudioBtn(
+                          onPressed: () =>  advancedPlayer.setPlaybackRate(playbackRate: 2.0),
+                          iconData: Icons.exposure_plus_2)
+                   ]),                 
                   Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -58,20 +64,8 @@ class _AudioTab extends State<AudioTab> {
                             iconData: Icons.play_arrow),
                         AudioBtn(
                             onPressed: () => advancedPlayer.pause(),
-                            iconData: Icons.pause),
-                        AudioBtn(
-                            onPressed: () => advancedPlayer.stop(),
-                            iconData: Icons.stop)
-                      ]),
-                      Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                          AudioBtn(
-                          onPressed: () =>  advancedPlayer.setPlaybackRate(playbackRate: 2.0),
-                          iconData: Icons.exposure_plus_2)
-                    ]),
-                  slider()
+                            iconData: Icons.pause)
+                      ])
                 ])));
   }
 
