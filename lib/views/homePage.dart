@@ -2,6 +2,7 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:athena/tabsContent/audioTab.dart';
+import 'package:athena/tabsContent/fileTab.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -21,7 +22,7 @@ class HomePage extends StatelessWidget {
         body: TabBarView(
           children: [
             AudioTab(),
-            Icon(Icons.library_books),
+            FileTab(),
           ],
         ),
       ),

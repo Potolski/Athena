@@ -12,7 +12,7 @@ class AudioBtn extends StatelessWidget {
         minWidth: 60.0,
         child: IconButton(
           icon: Icon(iconData),
-          color: Colors.blue,
+          color: Colors.black,
           onPressed: () {
             onPressed();
           },
