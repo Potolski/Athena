@@ -16,7 +16,8 @@ class _AudioTab extends State<AudioTab> {
   Duration _position = new Duration();
   AudioPlayer advancedPlayer;
   AudioCache audioCache;
-
+  bool _isPaused = true;
+  
   @override
   void initState() {
     super.initState();
@@ -34,7 +35,19 @@ class _AudioTab extends State<AudioTab> {
     advancedPlayer.onAudioPositionChanged.listen((p) => setState(() {
           _position = p;
         }));
-  }
+      }
+      
+void _togglePlay() {
+  setState(() {
+    if (_isPaused) {
+      audioCache.play('audio.mp3');
+      _isPaused = false;
+    } else {
+      advancedPlayer.pause();
+      _isPaused = true;
+    }
+  });
+}
 
   String localFilePath;
 
@@ -60,11 +73,9 @@ class _AudioTab extends State<AudioTab> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AudioBtn(
-                            onPressed: () => audioCache.play('audio.mp3'),
-                            iconData: Icons.play_arrow),
-                        AudioBtn(
-                            onPressed: () => advancedPlayer.pause(),
-                            iconData: Icons.pause)
+                          onPressed: _togglePlay,
+                          iconData: (_isPaused ? Icons.play_arrow : Icons.pause)
+                        )
                       ])
                 ])));
   }
