@@ -17,6 +17,7 @@ dependencies:
   folder_picker: ^0.3.0
   permission_handler: '^4.4.0'
   mime: ^0.9.6+3
+  file_picker: ^1.9.0+1
 
 dev_dependencies:
   flutter_test:

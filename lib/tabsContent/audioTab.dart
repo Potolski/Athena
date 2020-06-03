@@ -2,7 +2,13 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:athena/components/audioBtn.dart';
+import 'package:folder_picker/folder_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'dart:io';
 import '../library.dart';
+import 'package:file_picker/file_picker.dart';
+
 
 typedef void OnError(Exception exception);
 
@@ -35,6 +41,36 @@ class _AudioTab extends State<AudioTab> {
           _position = p;
         }));
   }
+  void _selectFolders(BuildContext ctx) async {
+    var lib = Library();
+    final directory = await getExternalStorageDirectory();
+    final rdir = directory.path
+      .replaceFirst("Android/data/com.example.example/files", "");
+    Map<PermissionGroup, PermissionStatus> permissions =
+      await PermissionHandler().requestPermissions([PermissionGroup.storage]);
+    var nav = Navigator.of(ctx);
+
+    nav.push<FolderPickerPage>(
+        MaterialPageRoute(builder: (BuildContext context) {
+            var page = FolderPickerPage(
+            rootDirectory: Directory(rdir),
+            action: (BuildContext context, Directory folder) async {
+              await lib.addFolder(folder);
+              });
+            if (page == null)
+              print("aaah");
+            else print("wtf man");
+
+            return page;
+    }));
+  }
+  void _openFile() {
+    Future<File> fileResult =  FilePicker.getFile();
+    fileResult
+      ..catchError((e) => print(e))
+      ..then((value) => this.localFilePath = value.toString());
+  }
+
 
   String localFilePath;
 
@@ -47,14 +83,17 @@ class _AudioTab extends State<AudioTab> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AudioBtn(
-                      onPressed: () => Library().addFolders(ctx),
-                      iconData: Icons.folder),
+                      onPressed: () async => _selectFolders(ctx),
+                      iconData: Icons.folder_open),
+                  AudioBtn(
+                      onPressed: () async => _openFile(),
+                      iconData: Icons.open_in_new),
                   Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AudioBtn(
-                            onPressed: () => audioCache.play('audio.mp3'),
+                            onPressed: () => audioCache.play(this.localFilePath),
                             iconData: Icons.play_arrow),
                         AudioBtn(
                             onPressed: () => advancedPlayer.pause(),
