@@ -9,7 +9,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter WebView',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: Colors.teal,
+          scaffoldBackgroundColor: Colors.grey[850],
+          iconTheme: IconThemeData(
+            color :  Colors.blue[500], 
+          ),
         ),
         home: HomePage());
   }
