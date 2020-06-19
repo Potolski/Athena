@@ -1,3 +1,9 @@
+<div align="center">
+
+![Athena Logo](./assets/athena_logo.png)
+
+</div>
+
 # Athena
 
 "Athena or Athene, often given the epithet Pallas, is an ancient Greek
