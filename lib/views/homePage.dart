@@ -11,13 +11,16 @@ class HomePage extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+        backgroundColor: Colors.black,  
           bottom: TabBar(
             tabs: [
-              Tab(icon: Icon(Icons.audiotrack)),
-              Tab(icon: Icon(Icons.library_books)),
+              Tab(icon: Icon(Icons.audiotrack, color: Colors.blue[600])),
+              Tab(icon: Icon(Icons.library_books, color: Colors.blue[600])),
             ],
           ),
-          title: Text('Athena'),
+          title: Text('Athena', style: TextStyle(
+              color: Colors.blue[600],
+          )),
         ),
         body: TabBarView(
           children: [
